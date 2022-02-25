@@ -1,0 +1,3 @@
+# BlogTestSymfony
+
+test
