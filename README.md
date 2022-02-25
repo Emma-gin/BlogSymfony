@@ -3,12 +3,12 @@
 
 
 
-<h3 align="center">Packages:</h3>
+<h3>Packages:</h3>
 
 - doctrine-fixtures-bundle
 - knp-pagination
 
-<h3 align="center">Icones:</h3>
+<h3>Icones:</h3>
 
 - font awesome
 
