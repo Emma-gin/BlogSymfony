@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+
+    <a class="show_link_back" href="{{ path('articles_index') }}"><img src="https://img.icons8.com/external-phatplus-solid-phatplus/64/000000/external-back-arrow-essential-phatplus-solid-phatplus.png"/></a>
+    <section class="section_show_article">
+        <div class="container_article">
+            <h3>{{ article.title }}</h3>
+            <img src="{{article.picture}}" alt="">
+            <span>Publié le {{ article.lastUpdateDate ? article.lastUpdateDate|date('d-m-Y') : '' }}</span>
+            <p>{{ article.content }}</p>
+        </div>
+    </section>
+{% endblock %}

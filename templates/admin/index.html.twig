@@ -1,0 +1,122 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Blog Administrateur{% endblock %}
+
+{% block body %}
+<div class="container_admin">
+    <section>
+        <h3>Articles en attente de publication</h3>
+        <table cellspacing="0" class="table_admin">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Titre</th>
+                    <th class="none_responsive">Date de modification</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+                {% for article in articles %}
+                {% if article.isPublished == false %}
+                    <tbody>
+                        <tr>
+                            <td>{{ article.id }}</td>
+                            <td>{{ article.title }}</td>
+                            <td class="none_responsive">{{ article.lastUpdateDate|date('d/m/Y') }}</td>
+
+                            <td class="container_actions_admin">
+                                <a href="{{path('article_publish', {'id': article.id})}}"><img title="Publier" class="icon_publish" src="https://img.icons8.com/ios/50/000000/approval.png"/></a>
+                                {{ include('articles/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    </tbody>
+                    {% endif %}
+                {% endfor %}
+        </table>
+        {{ knp_pagination_render(articles) }}
+    </section>
+    <hr>
+    <section class="admin_articles">
+        <h3>Articles</h3>
+        <table cellspacing="0" class="table_admin">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Titre</th>
+                    <th class="none_responsive">Publier</th>
+                    <th class="none_responsive">Date de publication</th>
+                    <th class="none_responsive">Date de modification</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+                {% for article in articles %}
+                    <tbody id="tbody">
+                        <tr>
+                            <td>{{ article.id }}</td>
+                            <td>{{article.title}}</td>
+                            <td class="none_responsive">{{ article.isPublished ? 'oui' : 'non' }}</td>
+                            <td class="none_responsive">{{ article.isPublished ? article.publicationDate|date('d/m/Y') : '-' }}</td>
+                            <td class="none_responsive">{{ article.lastUpdateDate|date('d/m/Y') }}</td>
+
+                            <div id="{{ article.id }}" class="more_info"> 
+                                <div class="modal">
+                                    <p>{{article.id}}</p>
+                                    <p>Publié: {{ article.isPublished ? 'oui' : 'non' }}</p>
+                                    <p>Publié le: {{ article.isPublished ? article.publicationDate|date('d/m/Y') : '-' }}</p>
+                                    <p>Dernières modifications le: {{ article.lastUpdateDate|date('d/m/Y') }}</p>
+                                </div>
+                                <span class="close">&times;</span>
+                            </div>
+
+                            <td class="container_actions_admin">
+                                <button id="btn_more_info" data-id="{{ article.id }}" title="plus d'infos" class="btn_more_info"><img src="https://img.icons8.com/ios/50/000000/add--v1.png"/></button>
+                                <a href="{{path('articles_edit',{'id': article.id})}}"><img title="Modifier" src="https://img.icons8.com/external-kmg-design-glyph-kmg-design/32/000000/external-pen-office-stationery-kmg-design-glyph-kmg-design.png"/></a>
+                                {{ include('articles/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+        </table>
+        {{ knp_pagination_render(articles) }}
+    </section>
+    <hr>
+    <section class="admin_users">
+        <h3>Utilisateurs</h3>
+        <table cellspacing="0" class="table_admin">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th class="none_responsive">Adresse email</th>
+                    <th>Pseudo</th>
+                    <th class="none_responsive">Rôle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+                {% for user in users %}
+                    <tbody>
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td class="none_responsive">{{ user.email }}</td>
+                            <td>{{ user.username }}</td>
+                            <td class="none_responsive">{{ user.roles[0] }}</td>
+                            <div id="{{ user.id }}" class="more_info"> 
+                                <div class="modal">
+                                    <p>Email: {{ user.email }}</p>
+                                    <p>Role: {{ user.roles[0] }}</p>
+                                </div>
+                                <span class="close">&times;</span>
+                            </div>
+
+                            <td class="container_actions_admin">
+                                <button id="btn_more_info" data-id="{{ user.id }}" title="plus d'infos" class="btn_more_info btn_more_info_user"><img src="https://img.icons8.com/ios/50/000000/add--v1.png"/></button>
+                                {{include('admin/_deleteUser_form.html.twig')}}
+                            </td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+        </table>
+        {{ knp_pagination_render(users) }}
+    </section>
+</div>
+
+{% endblock %}

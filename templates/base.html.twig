@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Serif:wght@200&family=Roboto:wght@100&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="/css/style.css">
+        {% endblock %}
+    
+    </head>
+    <body>
+        <header>
+            <h1><a href="{{ path("articles_index")}}">Blog Symfony</a></h1>
+            <div class="container_nav">
+                <nav>
+                    <ul>
+                        <li class="li_link_nav"><a class="link_nav" href="{{ path("articles_index")}}">Home</a></li>
+                        {% if app.user %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li class="li_link_nav"><a class="link_nav" href="{{ path("admin")}}">Admin</a></li>
+                        {% endif %}
+                        <li class="li_link_nav"><a class="link_nav" href="{{path("articles_new")}}">Ajouter article</a></li>
+                        <li class="li_link_nav"><a class="link_nav" href="/logout">Se déconnecter</a></li> 
+                        {% else %}
+                        <li class="li_link_nav"><a class="link_nav" href="{{ path("app_register")}}">S'inscrire</a></li>
+                        <li class="li_link_nav"><a class="link_nav" href="{{ path("app_login")}}">Se connecter</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                <button class="burger">
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </header>
+
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+        <script src="/js/script.js"></script>
+        {% endblock %}
+
+        <footer>
+            &copy;
+            <span>Test Blog Symfony</span>
+        </footer>
+    </body>
+</html>

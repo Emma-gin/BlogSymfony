@@ -1,0 +1,37 @@
+<div class="container_form_new_edit">
+    {{ form_start(form) }}
+        <div class="container_fields">
+            <div class="container_field_form_new_edit">
+                {{ form_label(form.title, 'Titre')}}
+                {{ form_widget(form.title, {'attr': {'class': 'input_title'}}) }}
+            </div>
+            <div class="container_field_form_new_edit">
+                {{ form_label(form.picture, 'Image')}}
+            {% if article.picture is not null %}
+                <img src="{{article.picture}}" alt="">
+            {% endif %}
+                {{ form_widget(form.picture) }}
+            </div>
+            <div class="container_field_form_new_edit">
+                {{ form_label(form.categories, 'Catégories')}}
+                {{ form_widget(form.categories, {'attr':{'class':'container_categories'}}) }}
+            </div>
+        </div>
+    
+        <div class="container_field_form_new_edit">
+            {{ form_label(form.content, 'Contenu')}}
+            {{ form_widget(form.content) }}
+        </div>
+        
+        <div class="container_info_new_article">
+            <span class="info_new_article">Votre article est envoyé au service administration qui confirmera (sous réserve du respect des règles) la publication.</span>
+        </div>
+        <div class="container_field_form_new_edit_btn">
+            <a href="{{ path('articles_index') }}"><img src="https://img.icons8.com/external-phatplus-solid-phatplus/64/000000/external-back-arrow-essential-phatplus-solid-phatplus.png"/></a>
+            <div>
+                <button class="btn_save">{{ button_label|default('Enregistrer') }}</button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+</div>
+

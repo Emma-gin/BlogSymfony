@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog Accueil{% endblock %}
+
+{% block body %}
+    <table class="table_home">
+        <tbody>
+        {% for article in articles %}
+                <tr class="container_article_home">
+                    <td class="title_article">
+                        <a href="{{ path('articles_show', {'id': article.id}) }}">
+                            {{ article.title }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('articles_show', {'id': article.id}) }}">
+                            <img src="{{ article.picture }}" alt="">
+                            <img src="{{ '/uploads/' ~ article.picture }}" alt="">
+                        </a>
+                    </td>
+                    <td class="content">
+                        <a href="{{ path('articles_show', {'id': article.id}) }}">
+                            {{ article.content|slice(0, 25) }}
+                        </a>
+                    </td>
+                </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        {{ knp_pagination_render(articles) }}
+{% endblock %}

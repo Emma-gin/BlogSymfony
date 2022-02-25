@@ -1,0 +1,3 @@
+# register:
+#     path: /register2
+#     controller: App\Controller\RegistrationController::register
