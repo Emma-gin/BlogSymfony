@@ -14,8 +14,12 @@
                     </td>
                     <td>
                         <a href="{{ path('articles_show', {'id': article.id}) }}">
-                            <img src="{{ article.picture }}" alt="">
-                            <img src="{{ '/uploads/' ~ article.picture }}" alt="">
+
+                            {% if article.picture != 'https://via.placeholder.com/150' %}
+                                <img src="/uploads/{{ article.picture }}" alt="">
+                            {% else %}
+                                <img   src="{{article.picture}}" alt="">
+                            {% endif %}
                         </a>
                     </td>
                     <td class="content">

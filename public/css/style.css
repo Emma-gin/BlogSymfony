@@ -66,6 +66,8 @@ nav ul {
 
 /* ---home page--- */
 
+
+
 .table_home {
     width: 60%;
     margin: auto;
@@ -96,8 +98,10 @@ nav ul {
 }
 
 .container_article_home td a img {
+    height: 250px;
     width: 200px;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .title_article {
@@ -458,14 +462,14 @@ hr {
 
 /* ---footer--- */
 
-footer{
+footer {
     width: 100%;
     height: 30px;
     position: absolute;
     bottom: 0;
     background-color: rgba(127, 255, 212, 0.418);
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     margin-top: 10px;
     font-size: 0.7rem;
@@ -474,7 +478,6 @@ footer{
 /* ---responsive--- */
 
 @media screen and (max-width: 1200px) {
-
     header {
         height: 80px;
     }
@@ -620,7 +623,7 @@ footer{
         border: none;
         background-color: transparent;
     }
-    .btn_more_info_user{
+    .btn_more_info_user {
         margin: 0 4px;
     }
 
