@@ -12,5 +12,4 @@
 
 - font awesome
 
-Tuto suivi:  https://www.kaherecode.com/tutorial/creer-un-blog-avec-symfony4-partie-1
-(reproduit via commandes Symfony)
+
