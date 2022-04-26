@@ -1,5 +1,5 @@
 
-<h1 align="center">BlogTestSymfony</h1>
+<h1 align="center">BlogSymfony</h1>
 
 
 
